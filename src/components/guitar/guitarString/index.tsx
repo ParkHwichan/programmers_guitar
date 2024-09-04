@@ -30,16 +30,11 @@ export default function GuitarString(
     }, [state]);
 
 
-    return <div className={"flex flex-row  "}>
+    return <div className={"flex flex-row  text-black"}>
 
         <div className={"w-[40px]"}>
             {
                 state.stringIndex
-            }
-        </div>
-        <div className={"w-[40px]"}>
-            {
-                state.fret
             }
         </div>
         <div className={"w-[40px]"}>
@@ -52,29 +47,29 @@ export default function GuitarString(
                 note.toKorean()
             }
         </div>
-        <div className={"w-[40px] flex items-end justify-end"}>
-            <button onClick={() => {
+        <button
+            className={"border border-black w-[40px] text-sm mr-1"}
+            onClick={() => {
                 setState({
                     ...state,
                     muted: !state.muted
                 })
             }}>
-                {
-                    state.muted ? "x" : "_"
-                }
-            </button>
-        </div>
+            {
+                state.muted ? "X" : state.fret
+            }
+        </button>
         {
             Array.from({length: frets}).map((_, fretIndex) => {
-
                 const showDot = dotPosition.some(([fret, string]) => {
                     return fret === fretIndex + 1 && string === state.stringIndex - 1
-                } )
+                })
 
                 return <Fret
                     dot={showDot ? "up" : undefined}
                     muted={state.muted}
                     key={fretIndex}
+                    borderWidth={fretIndex % 12 === 0 ? 4 : undefined}
                     isActive={fretIndex === state.fret - 1}
                     onClick={() => {
                         if (fretIndex === state.fret - 1) {
@@ -99,6 +94,7 @@ export default function GuitarString(
                 />
             })
         }
+
     </div>
 
 

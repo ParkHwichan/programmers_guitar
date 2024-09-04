@@ -11,7 +11,7 @@ export default function Fretboard(
     const strings = props.strings || 6;
 
 
-    return <div className={"flex flex-col"}>
+    return <div className={"flex flex-col border border-black w-fit bg-white"}>
         {
             Array.from({length: strings}).map((_, stringIndex) => {
                 return <GuitarString
