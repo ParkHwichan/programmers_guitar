@@ -42,12 +42,14 @@ export default function GuitarString(
                 {
                     note.toString().split("#").map((notePart, index) => {
                         return (
-                            <div key={index} style={{display: 'inline-block'}}>
+                            <>
                                 {notePart}
                                 {index < note.toString().split("#").length - 1 && (
-                                    <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                                    <span
+                                        className={"mb-auto"}
+                                        style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
                                 )}
-                            </div>
+                            </>
                         );
                     })
                 }
@@ -56,12 +58,14 @@ export default function GuitarString(
                 {
                     note.toKorean().split("#").map((notePart, index) => {
                         return (
-                            <div key={index} style={{display: 'inline-block'}}>
+                            <>
                                 {notePart}
-                                {index < note.toString().split("#").length - 1 && (
-                                    <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                                {index < note.toKorean().split("#").length - 1 && (
+                                    <span
+                                        className={"mb-auto"}
+                                        style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
                                 )}
-                            </div>
+                            </>
                         );
                     })
                 }
