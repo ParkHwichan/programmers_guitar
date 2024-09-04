@@ -4,6 +4,7 @@ import {Note} from "@/model/note/note";
 export interface GuitarStringState {
     stringIndex: number;
     fret: number;
+    muted?: boolean;
 }
 
 // 주파수 설정 (Hz)

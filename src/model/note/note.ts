@@ -5,6 +5,9 @@ type NoteNameKor = '도' | '도#' | '레' | '레#' | '미' | '파' | '파#' | '�
 const NOTE_NAMES: NoteName[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const KOR_NOTE_NAMES: NoteNameKor[] = ['도', '도#', '레', '레#', '미', '파', '파#', '솔', '솔#', '라', '라#', '시'];
 
+const majorChordTransposition = [0, 4, 7];
+const minorChordTransposition = [0, 3, 7];
+const seventhChordTransposition = [0, 4, 7, 10];
 
 export class Note {
     name: NoteName;
@@ -59,6 +62,23 @@ export class Note {
         const newNoteIndex = (noteIndex + semitones) % 12;
         const newOctave = this.octave + Math.floor((noteIndex + semitones) / 12);
         return new Note(noteNames[newNoteIndex], newOctave);
+    }
+
+    getMajorChord(): Note[] {
+        return majorChordTransposition.map(transposition =>
+            this.transpose(transposition)
+        );
+    }
+
+    getMinorChord(): Note[] {
+        return minorChordTransposition.map(transposition =>
+            this.transpose(transposition)
+        );
+    }
+
+    getSeventhChord(): Note[] {
+        return seventhChordTransposition.map(transposition =>
+            this.transpose(transposition))
     }
 
     // 계이름 반환
