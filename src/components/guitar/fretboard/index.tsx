@@ -1,4 +1,5 @@
 import Fret from "@/components/guitar/fret";
+import GuitarString from "@/components/guitar/guitarString";
 
 export default function Fretboard(
     props: {
@@ -10,19 +11,12 @@ export default function Fretboard(
     const strings = props.strings || 6;
 
 
-
-
-    return <div>
-
+    return <div className={"flex flex-col"}>
         {
             Array.from({length: strings}).map((_, stringIndex) => {
-                return <div className={"flex"}>
-                    {
-                        Array.from({length: frets}).map((_, fretIndex) => {
-                            return <Fret/>
-                        })
-                    }
-                </div>
+                return <GuitarString
+                    key={stringIndex}
+                    stringIndex={stringIndex+1} frets={frets}/>
             })
         }
     </div>
