@@ -74,7 +74,7 @@ export default function GuitarString(
                 })
             }}>
             {
-                state.muted ? "X" : state.fret
+                state.muted ? "X" : state.fret === 0 ? "O" : state.fret
             }
         </button>
         {
