@@ -32,13 +32,13 @@ export default function GuitarString(
 
     return <div className={"flex flex-row text-sm text-black"}>
 
-        <div className={"flex flex-row bg-black/10"}>
-            <div className={"w-[40px] text-center text-sm flex items-center justify-center "}>
+        <div className={`flex flex-row ${props.stringIndex !== 6 ? "border-b border-b-black " : ""}`}>
+            <div className={"w-[40px] text-center text-sm flex items-center justify-center border-r-black border-r"}>
                 {
                     state.stringIndex
                 }
             </div>
-            <div className={"w-[40px] flex items-center justify-center"}>
+            <div className={"w-[40px] flex items-center justify-center border-r-black border-r"}>
                 {
                     note.toString().split("#").map((notePart, index) => {
                         return (
@@ -54,7 +54,7 @@ export default function GuitarString(
                     })
                 }
             </div>
-            <div className={"w-[40px] flex items-center justify-center"}>
+            <div className={"w-[40px] flex items-center justify-center border-r-black border-r"}>
                 {
                     note.toKorean().split("#").map((notePart, index) => {
                         return (
