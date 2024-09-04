@@ -5,7 +5,7 @@ import Fret from "@/components/guitar/fret";
 
 
 const dotPosition = [
-    [3, 3], [5, 3], [7, 3], [9, 3], [12, 2], [12, 4], [15, 3], [17, 3], [19, 3], [21,3], [24, 2], [24, 4]
+    [3, 3], [5, 3], [7, 3], [9, 3], [12, 2], [12, 4], [15, 3], [17, 3], [19, 3], [21, 3], [24, 2], [24, 4]
 ]
 
 
@@ -39,12 +39,30 @@ export default function GuitarString(
         </div>
         <div className={"w-[40px]"}>
             {
-                note.toString()
+                note.toString().split("#").map((notePart, index) => {
+                    return (
+                        <div key={index} style={{display: 'inline-block'}}>
+                            {notePart}
+                            {index < note.toString().split("#").length - 1 && (
+                                <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                            )}
+                        </div>
+                    );
+                })
             }
         </div>
         <div className={"w-[40px]"}>
             {
-                note.toKorean()
+                note.toKorean().split("#").map((notePart, index) => {
+                    return (
+                        <div key={index} style={{display: 'inline-block'}}>
+                            {notePart}
+                            {index < note.toString().split("#").length - 1 && (
+                                <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                            )}
+                        </div>
+                    );
+                })
             }
         </div>
         <button
