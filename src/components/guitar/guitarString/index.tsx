@@ -30,53 +30,56 @@ export default function GuitarString(
     }, [state]);
 
 
-    return <div className={"flex flex-row  text-black"}>
+    return <div className={"flex flex-row text-sm text-black"}>
 
-        <div className={"w-[40px]"}>
-            {
-                state.stringIndex
-            }
+        <div className={"flex flex-row bg-black/10"}>
+            <div className={"w-[40px] text-center text-sm flex items-center justify-center "}>
+                {
+                    state.stringIndex
+                }
+            </div>
+            <div className={"w-[40px] flex items-center justify-center"}>
+                {
+                    note.toString().split("#").map((notePart, index) => {
+                        return (
+                            <div key={index} style={{display: 'inline-block'}}>
+                                {notePart}
+                                {index < note.toString().split("#").length - 1 && (
+                                    <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                                )}
+                            </div>
+                        );
+                    })
+                }
+            </div>
+            <div className={"w-[40px] flex items-center justify-center"}>
+                {
+                    note.toKorean().split("#").map((notePart, index) => {
+                        return (
+                            <div key={index} style={{display: 'inline-block'}}>
+                                {notePart}
+                                {index < note.toString().split("#").length - 1 && (
+                                    <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
+                                )}
+                            </div>
+                        );
+                    })
+                }
+            </div>
+            <button
+                className={"w-[40px] text-sm mr-1"}
+                onClick={() => {
+                    setState({
+                        ...state,
+                        muted: !state.muted
+                    })
+                }}>
+                {
+                    state.muted ? "X" : state.fret === 0 ? "O" : state.fret
+                }
+            </button>
         </div>
-        <div className={"w-[40px]"}>
-            {
-                note.toString().split("#").map((notePart, index) => {
-                    return (
-                        <div key={index} style={{display: 'inline-block'}}>
-                            {notePart}
-                            {index < note.toString().split("#").length - 1 && (
-                                <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
-                            )}
-                        </div>
-                    );
-                })
-            }
-        </div>
-        <div className={"w-[40px]"}>
-            {
-                note.toKorean().split("#").map((notePart, index) => {
-                    return (
-                        <div key={index} style={{display: 'inline-block'}}>
-                            {notePart}
-                            {index < note.toString().split("#").length - 1 && (
-                                <span style={{fontSize: '0.6em', verticalAlign: 'super'}}>#</span>
-                            )}
-                        </div>
-                    );
-                })
-            }
-        </div>
-        <button
-            className={"border border-black w-[40px] text-sm mr-1"}
-            onClick={() => {
-                setState({
-                    ...state,
-                    muted: !state.muted
-                })
-            }}>
-            {
-                state.muted ? "X" : state.fret === 0 ? "O" : state.fret
-            }
-        </button>
+
         {
             Array.from({length: frets}).map((_, fretIndex) => {
                 const showDot = dotPosition.some(([fret, string]) => {
